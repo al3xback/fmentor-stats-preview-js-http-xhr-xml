@@ -1,0 +1,122 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/functions' as func;
+
+.card,
+.card__image,
+.card__image-inner,
+.card__content,
+.card__stats-list,
+.card__stats-list-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.card {
+	width: 100%;
+	max-width: func.em(420, var.$font-size-primary);
+	background-color: var.$color-dark-desaturated-blue;
+	margin: func.em(30, var.$font-size-primary) 0
+		func.em(60, var.$font-size-primary);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.card__image-inner {
+	position: relative;
+	height: 0;
+	padding-bottom: 76%;
+	background-color: var.$color-soft-violet;
+}
+
+.card__image-inner img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top;
+	mix-blend-mode: multiply;
+	opacity: 0.75;
+}
+
+.card__content {
+	padding: func.em(40, var.$font-size-primary)
+		func.em(24, var.$font-size-primary);
+	text-align: center;
+}
+
+.card__title {
+	margin-bottom: func.em(16, 26);
+}
+
+.card__desc {
+	margin-bottom: func.em(36, var.$font-size-primary);
+}
+
+.card__stats-list {
+	gap: func.em(30, var.$font-size-primary);
+}
+
+.card__stats-list-item {
+	gap: func.em(2, 12);
+	font-size: func.em(12, var.$font-size-primary);
+	text-transform: uppercase;
+}
+
+.card__stats-list-item .num {
+	font-size: func.em(20, 12);
+	font-weight: var.$font-weight-700;
+	color: var.$color-white;
+}
+
+.card__stats-list-item .label {
+	letter-spacing: func.em(1, var.$font-size-primary);
+}
+
+@media (min-width: 65em) {
+	.card {
+		flex-direction: row-reverse;
+		max-width: func.em(1110, var.$font-size-primary);
+	}
+
+	.card__image,
+	.card__content {
+		flex-shrink: 0;
+		flex-basis: 50%;
+		max-width: 50%;
+	}
+
+	.card__image-inner,
+	.card__image-inner img {
+		position: static;
+	}
+
+	.card__image-inner {
+		flex: auto;
+		height: auto;
+		padding-bottom: 0;
+	}
+
+	.card__content {
+		padding: func.em(70, var.$font-size-primary);
+		text-align: left;
+	}
+
+	.card__title {
+		font-size: func.em(36, var.$font-size-primary);
+	}
+
+	.card__desc {
+		max-width: func.em(370, var.$font-size-primary);
+		margin-bottom: func.em(60, var.$font-size-primary);
+	}
+
+	.card__stats-list {
+		flex-direction: row;
+	}
+
+	.card__stats-list-item {
+		min-width: func.em(112, 12);
+	}
+}

@@ -1,0 +1,23 @@
+@use '../abstracts/variables' as var;
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: inherit;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.15s ease-in-out;
+}
+
+.btn--link {
+	color: var.$color-white-light;
+}
+
+.btn--link:hover {
+	text-decoration: underline;
+}

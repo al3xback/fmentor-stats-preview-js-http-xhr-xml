@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/functions' as func;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var.$font-family-headings;
+	font-weight: var.$font-weight-700;
+	color: var.$color-white;
+	line-height: 1.25;
+}
+
+h2 {
+	font-size: func.em(26, var.$font-size-primary);
+}
+
+h3 {
+	font-size: func.em(22, var.$font-size-primary);
+}
+
+h4 {
+	font-size: func.em(16, var.$font-size-primary);
+}
+
+h5 {
+	font-size: func.em(15, var.$font-size-primary);
+}
+
+h6 {
+	font-size: func.em(14, var.$font-size-primary);
+}
+
+p {
+	font-size: 1em;
+}
+
+strong {
+	font-weight: var.$font-weight-700;
+}
+
+mark {
+	background-color: transparent;
+	color: var.$color-soft-violet;
+}

@@ -1,0 +1,21 @@
+@use 'sass:math';
+@use '../abstracts/variables' as var;
+@use '../abstracts/functions' as func;
+
+body {
+	position: relative;
+	display: flex;
+	background-color: var.$color-dark-blue;
+	font-family: var.$font-family-primary;
+	-webkit-font-smoothing: antialiased;
+	font-size: func.em(var.$font-size-primary);
+	font-weight: var.$font-weight-400;
+	color: var.$color-white-lighter;
+	line-height: math.div(26, 15);
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+}
