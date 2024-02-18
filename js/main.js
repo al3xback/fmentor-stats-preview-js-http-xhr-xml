@@ -1,7 +1,7 @@
 import { sendHttpRequest } from './util.js';
 
 const URL =
-	'https://gist.githubusercontent.com/al3xback/32f6c21526e16b46a68938b9e54b096c/raw/8f12796c6059b0dfe894d428dd6f160c4b34b377/stats-preview-data.xml';
+	'https://gist.githubusercontent.com/al3xback/32f6c21526e16b46a68938b9e54b096c/raw/aaa643f9c0374d02d8683ff491932d9a68dc18d3/stats-preview-data.xml';
 
 const cardWrapperEl = document.querySelector('.card-wrapper');
 const cardTemplate = document.getElementById('card-template');
@@ -34,7 +34,9 @@ const renderCardContent = (data) => {
 
 	const title = getElementValue('title');
 	const description = getElementValue('description');
-	const image = getElementValue('image');
+	const imageInfo = dataDoc.getElementsByTagName('image')[0];
+	const imageSrc = imageInfo.children[0].childNodes[0].nodeValue;
+	const imageAlt = imageInfo.children[1].childNodes[0].nodeValue;
 	const statusesEl = dataDoc.getElementsByTagName('statuses')[0];
 	const statuses = Array.from(statusesEl.children).map((link) => {
 		const val = link.childNodes[0].nodeValue.split(': ');
@@ -48,8 +50,8 @@ const renderCardContent = (data) => {
 	const cardEl = cardTemplateNode.querySelector('.card');
 
 	const cardImageEl = cardEl.querySelector('.card__image img');
-	cardImageEl.src = './images/' + image;
-	cardImageEl.alt = name;
+	cardImageEl.src = './images/' + imageSrc;
+	cardImageEl.alt = imageAlt;
 
 	const cardTitleEl = cardEl.querySelector('.card__title');
 	cardTitleEl.textContent = title;
