@@ -28,36 +28,40 @@ const renderCardContent = (data) => {
 	const parser = new DOMParser();
 	const dataDoc = parser.parseFromString(data, 'text/xml');
 
-	const getElementValue = (el) => {
-		return dataDoc.getElementsByTagName(el)[0].childNodes[0].nodeValue;
+	const getElementValue = (name) => {
+		const element = dataDoc.getElementsByTagName(name)[0];
+		const hasChildren = !!element.children.length;
+		if (hasChildren) {
+			return [...element.children].map(
+				(item) => item.childNodes[0].nodeValue
+			);
+		}
+		return element.childNodes[0].nodeValue;
 	};
 
 	const title = getElementValue('title');
 	const description = getElementValue('description');
-	const imageInfo = dataDoc.getElementsByTagName('image')[0];
-	const imageSrc = imageInfo.children[0].childNodes[0].nodeValue;
-	const imageAlt = imageInfo.children[1].childNodes[0].nodeValue;
-	const statusesEl = dataDoc.getElementsByTagName('statuses')[0];
-	const statuses = Array.from(statusesEl.children).map((link) => {
-		const val = link.childNodes[0].nodeValue.split(': ');
+	const imageInfo = getElementValue('image');
+	const statuses = getElementValue('statuses').map((status) => {
+		const statusInfo = status.split(': ');
 		return {
-			label: val[0],
-			amount: val[1],
+			label: statusInfo[0],
+			amount: statusInfo[1],
 		};
 	});
 
 	const cardTemplateNode = document.importNode(cardTemplate.content, true);
 	const cardEl = cardTemplateNode.querySelector('.card');
 
-	const cardImageEl = cardEl.querySelector('.card__image img');
-	cardImageEl.src = './images/' + imageSrc;
-	cardImageEl.alt = imageAlt;
-
 	const cardTitleEl = cardEl.querySelector('.card__title');
 	cardTitleEl.textContent = title;
 
 	const cardDescEl = cardEl.querySelector('.card__desc');
 	cardDescEl.textContent = description;
+
+	const cardImageEl = cardEl.querySelector('.card__image img');
+	cardImageEl.src = './images/' + imageInfo[0];
+	cardImageEl.alt = imageInfo[1];
 
 	const cardStatusListEl = cardEl.querySelector('.card__stats-list');
 
