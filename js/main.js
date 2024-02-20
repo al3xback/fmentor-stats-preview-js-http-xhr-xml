@@ -41,7 +41,7 @@ const renderCardContent = (data) => {
 
 	const title = getElementValue('title');
 	const description = getElementValue('description');
-	const imageInfo = getElementValue('image');
+	const image = getElementValue('image');
 	const statuses = getElementValue('statuses').map((status) => {
 		const statusInfo = status.split(': ');
 		return {
@@ -60,8 +60,8 @@ const renderCardContent = (data) => {
 	cardDescEl.textContent = description;
 
 	const cardImageEl = cardEl.querySelector('.card__image img');
-	cardImageEl.src = './images/' + imageInfo[0];
-	cardImageEl.alt = imageInfo[1];
+	cardImageEl.src = './images/' + image[0];
+	cardImageEl.alt = image[1];
 
 	const cardStatusListEl = cardEl.querySelector('.card__stats-list');
 
