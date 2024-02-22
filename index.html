@@ -44,6 +44,14 @@
 			}
 		</style>
 
+		<template id="card-image-template">
+			<div class="card__image">
+				<div class="card__image-inner">
+					<img />
+				</div>
+			</div>
+		</template>
+
 		<template id="card-stat-item-template">
 			<li class="card__stats-list-item">
 				<span class="num"></span>
@@ -51,19 +59,16 @@
 			</li>
 		</template>
 
+		<template id="card-content-template">
+			<div class="card__content">
+				<h2 class="card__title"></h2>
+				<p class="card__desc"></p>
+				<ul class="card__stats-list"></ul>
+			</div>
+		</template>
+
 		<template id="card-template">
-			<article class="card">
-				<div class="card__image">
-					<div class="card__image-inner">
-						<img />
-					</div>
-				</div>
-				<div class="card__content">
-					<h2 class="card__title"></h2>
-					<p class="card__desc"></p>
-					<ul class="card__stats-list"></ul>
-				</div>
-			</article>
+			<article class="card"></article>
 		</template>
 
 		<header>

@@ -5,9 +5,11 @@ const URL =
 
 const cardWrapperEl = document.querySelector('.card-wrapper');
 const cardTemplate = document.getElementById('card-template');
+const cardImageTemplate = document.getElementById('card-image-template');
 const cardStatusItemTemplate = document.getElementById(
 	'card-stat-item-template'
 );
+const cardContentTemplate = document.getElementById('card-content-template');
 const loadingEl = document.querySelector('.loading');
 
 const removeLoading = () => {
@@ -53,17 +55,30 @@ const renderCardContent = (data) => {
 	const cardTemplateNode = document.importNode(cardTemplate.content, true);
 	const cardEl = cardTemplateNode.querySelector('.card');
 
-	const cardTitleEl = cardEl.querySelector('.card__title');
-	cardTitleEl.textContent = title;
-
-	const cardDescriptionEl = cardEl.querySelector('.card__desc');
-	cardDescriptionEl.textContent = description;
-
-	const cardImageEl = cardEl.querySelector('.card__image img');
+	/* [card image] */
+	const cardImageTemplateNode = document.importNode(
+		cardImageTemplate.content,
+		true
+	);
+	const cardImageEl = cardImageTemplateNode.querySelector('.card__image img');
 	cardImageEl.src = './images/' + image[0];
 	cardImageEl.alt = image[1];
 
-	const cardStatusListEl = cardEl.querySelector('.card__stats-list');
+	/* [card content] */
+	const cardContentTemplateNode = document.importNode(
+		cardContentTemplate.content,
+		true
+	);
+	const cardContentEl =
+		cardContentTemplateNode.querySelector('.card__content');
+
+	const cardTitleEl = cardContentEl.querySelector('.card__title');
+	cardTitleEl.textContent = title;
+
+	const cardDescriptionEl = cardContentEl.querySelector('.card__desc');
+	cardDescriptionEl.textContent = description;
+
+	const cardStatusListEl = cardContentEl.querySelector('.card__stats-list');
 
 	for (const status of statuses) {
 		const { label, amount } = status;
@@ -85,7 +100,10 @@ const renderCardContent = (data) => {
 		cardStatusListEl.appendChild(cardStatusItemTemplateNode);
 	}
 
+	/* [init] */
 	removeLoading();
+	cardEl.appendChild(cardImageTemplateNode);
+	cardEl.appendChild(cardContentTemplateNode);
 	cardWrapperEl.appendChild(cardTemplateNode);
 };
 
